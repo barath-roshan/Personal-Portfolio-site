@@ -28,7 +28,7 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.from_name || !form.from_email || !form.message) return;
+    if (!form.from_name || !form.email || !form.message) return;
     setStatus("sending");
     try {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY);
