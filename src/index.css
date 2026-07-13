@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #b0ff44;
+  --accent-hover: #9aef2a;
+  --bg-dark: #0d1117;
+  --card-bg: rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.10);
+  --card-hover: rgba(176,255,68,0.25);
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0aec0;
+  --text-muted: #6b7280;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: rgba(176,255,68,0.4); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(176,255,68,0.7); }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Kill ALL native cursors everywhere — CustomCursor handles it ── */
+*, *::before, *::after {
+  cursor: none !important;
+}
+@media (hover: none) {
+  *, *::before, *::after { cursor: auto !important; }
+}
+
+/* ── Smooth section theme transition ── */
+#root { transition: background-color 0.4s ease; }
+
+/* ── Skills Marquee Animation — handled inline in Skills.tsx ── */
