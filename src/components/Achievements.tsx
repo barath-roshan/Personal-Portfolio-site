@@ -69,7 +69,7 @@ export default function Achievements() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
             Achievements & Recognition
           </h2>
           <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#b0ff44' }} />
@@ -119,7 +119,7 @@ export default function Achievements() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group p-8 rounded-2xl border hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+              className="group p-4 md:p-8 rounded-2xl border hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               style={{ 
                 backgroundColor: 'rgba(255,255,255,0.07)',
                 borderColor: 'rgba(255,255,255,0.13)'

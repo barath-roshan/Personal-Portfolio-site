@@ -113,8 +113,8 @@ export default function ProfileSphere() {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -42%)',
-        width: '500px',
-        height: '500px',
+        width: 'min(500px, 92vw)',
+        height: 'min(500px, 92vw)',
         zIndex: 0,
         pointerEvents: 'none',
       }}

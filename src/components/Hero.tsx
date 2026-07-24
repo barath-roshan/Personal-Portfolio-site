@@ -52,7 +52,7 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ paddingTop: "4rem" }}
+      style={{ paddingTop: "4rem", paddingBottom: "5rem" }}
     >
       {/* 3D Interactive Sphere — sits behind everything */}
       <Suspense fallback={null}>
@@ -96,8 +96,8 @@ export default function Hero() {
           alt="Barath Roshan S"
           className="rounded-full object-cover"
           style={{
-            width: 200,
-            height: 200,
+            width: 'clamp(130px, 32vw, 200px)',
+            height: 'clamp(130px, 32vw, 200px)',
             border: "4px solid rgba(176,255,68,0.25)",
             boxShadow: "0 0 32px rgba(176,255,68,0.15)",
           }}
@@ -142,11 +142,11 @@ export default function Hero() {
         className="relative mx-auto mb-6"
         style={{
           maxWidth: 520,
-          width: "90%",
+          width: '92%',
           background: "rgba(0,0,0,0.06)",
           border: "1px solid rgba(176,255,68,0.3)",
           borderRadius: 8,
-          padding: "1rem 1.25rem",
+          padding: 'clamp(0.75rem, 3vw, 1.25rem)',
           zIndex: 2,
         }}
       >
@@ -217,7 +217,7 @@ export default function Hero() {
 
       {/* Stats grid */}
       <div
-        className="grid grid-cols-4 gap-3 mb-10"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10"
         style={{ maxWidth: 480, width: "90%", zIndex: 2, position: "relative" }}
       >
         {[

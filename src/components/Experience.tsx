@@ -87,7 +87,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="relative mb-16 ml-16"
+              className="relative mb-10 md:mb-16 ml-10 md:ml-16"
             >
               <div
                 className="absolute -left-[35px] top-6 w-4 h-4 rounded-full border-2 shadow-lg"
@@ -99,7 +99,7 @@ export default function Experience() {
               />
 
               <div
-                className="p-8 rounded-2xl border hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                className="p-4 md:p-8 rounded-2xl border hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   backgroundColor: "rgba(255,255,255,0.07)",
                   borderColor: "rgba(255,255,255,0.13)",

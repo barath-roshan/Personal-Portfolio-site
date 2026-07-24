@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const ROW1 = [
@@ -13,6 +14,8 @@ const ROW1 = [
   { slug: 'mongodb',     name: 'MongoDB' },
   { slug: 'postgres',    name: 'PostgreSQL' },
   { slug: 'git',         name: 'Git' },
+  { slug: 'langchain',   name: 'LangChain' },
+  { slug: 'llamaindex',  name: 'LlamaIndex' },
 ];
 
 const ROW2 = [
@@ -28,9 +31,15 @@ const ROW2 = [
   { slug: 'sqlite',   name: 'SQLite' },
   { slug: 'postman',  name: 'Postman' },
   { slug: 'figma',    name: 'Figma' },
+  { slug: 'mcp',      name: 'MCP' },
 ];
 
-// Triple to guarantee seamless loop on all screen widths
+const CUSTOM_ICONS: Record<string, string> = {
+  langchain:  'https://cdn.simpleicons.org/langchain/b0ff44',
+  llamaindex: 'https://avatars.githubusercontent.com/u/130722866?s=48&v=4',
+  mcp:        '',
+};
+
 const R1 = [...ROW1, ...ROW1, ...ROW1];
 const R2 = [...ROW2, ...ROW2, ...ROW2];
 
@@ -86,7 +95,6 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        {/* Row 1 — slides LEFT */}
         <div className="skills-fade-mask mb-5">
           <div className="skills-track-left">
             {R1.map((skill, i) => (
@@ -95,7 +103,6 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* Row 2 — slides RIGHT */}
         <div className="skills-fade-mask">
           <div className="skills-track-right">
             {R2.map((skill, i) => (
@@ -104,7 +111,6 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* Stats banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,14 +119,11 @@ export default function Skills() {
         >
           <div
             className="inline-flex flex-col sm:flex-row items-center gap-6 sm:gap-10 px-10 py-6 rounded-2xl border"
-            style={{
-              backgroundColor: 'rgba(176,255,68,0.05)',
-              borderColor: 'rgba(176,255,68,0.20)',
-            }}
+            style={{ backgroundColor: 'rgba(176,255,68,0.05)', borderColor: 'rgba(176,255,68,0.20)' }}
           >
             {[
               { value: '1550+', label: 'Problems Solved' },
-              { value: '24+',   label: 'Skills & Tools' },
+              { value: '27+',   label: 'Skills & Tools' },
               { value: '12+',   label: 'Projects Shipped' },
             ].map(({ value, label }) => (
               <div key={label} className="text-center">
@@ -136,6 +139,9 @@ export default function Skills() {
 }
 
 function SkillChip({ slug, name }: { slug: string; name: string }) {
+  const customSrc = CUSTOM_ICONS[slug];
+  const skillIconSrc = `https://skillicons.dev/icons?i=${slug}`;
+
   return (
     <div
       className="flex items-center gap-3 mx-2.5 px-5 py-3 rounded-full border select-none transition-all duration-200"
@@ -161,16 +167,53 @@ function SkillChip({ slug, name }: { slug: string; name: string }) {
         el.style.color = '#e2e8f0';
       }}
     >
-      <img
-        src={`https://skillicons.dev/icons?i=${slug}`}
-        alt={name}
-        width={26}
-        height={26}
-        loading="lazy"
-        style={{ display: 'block', flexShrink: 0 }}
-        onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-      />
+      <SkillIcon slug={slug} name={name} skillIconSrc={skillIconSrc} customSrc={customSrc} />
       <span>{name}</span>
     </div>
+  );
+}
+
+function SkillIcon({
+  name, skillIconSrc, customSrc,
+}: {
+  slug: string; name: string; skillIconSrc: string; customSrc: string | undefined;
+}) {
+  const letterAvatar = (
+    <span
+      style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        width: 26, height: 26, borderRadius: '50%',
+        background: 'rgba(176,255,68,0.2)',
+        color: '#b0ff44', fontWeight: 700, fontSize: '0.7rem',
+        flexShrink: 0, fontFamily: 'JetBrains Mono, monospace',
+      }}
+    >
+      {name.slice(0, 2).toUpperCase()}
+    </span>
+  );
+
+  if (customSrc === '') return letterAvatar;
+
+  const [src, setSrc] = React.useState(skillIconSrc);
+  const [failed, setFailed] = React.useState(false);
+
+  if (failed) return letterAvatar;
+
+  return (
+    <img
+      src={src}
+      alt={name}
+      width={26}
+      height={26}
+      loading="lazy"
+      style={{ display: 'block', flexShrink: 0 }}
+      onError={() => {
+        if (src === skillIconSrc && customSrc) {
+          setSrc(customSrc);
+        } else {
+          setFailed(true);
+        }
+      }}
+    />
   );
 }

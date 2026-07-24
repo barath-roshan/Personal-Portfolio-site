@@ -74,7 +74,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
           {/* Contact Information */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <h3 className="text-2xl font-bold mb-8 text-white">Get In Touch</h3>
